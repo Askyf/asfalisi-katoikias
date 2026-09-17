@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ασφάλιση Κατοικίας Χανιά | Το ασφαλιστήριο σας, με απλά λόγια</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F6F4EC;
+  --paper-dim:#EDE9DC;
+  --blue:#1F4E76;
+  --blue-deep:#153A5A;
+  --ink:#1E2933;
+  --ink-soft:#5B6870;
+  --red:#C23B22;
+  --line:#B9C6D1;
+  --line-soft:#DBD5C4;
+  --white:#FFFFFF;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'IBM Plex Sans',sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+}
+h1,h2,h3{font-family:'IBM Plex Sans',sans-serif;font-weight:700;letter-spacing:-.01em;color:var(--blue-deep);}
+.mono{font-family:'IBM Plex Mono',monospace;}
+a{color:inherit;}
+img{max-width:100%;display:block;}
+.container{width:92%;max-width:1160px;margin:0 auto;}
+
+/* ---- grid paper texture ---- */
+.grid-bg{
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size:38px 38px;
+  background-color:var(--paper);
+  position:relative;
+}
+.grid-bg::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(246,244,236,0) 0%, var(--paper) 96%);
+}
+
+/* ---- buttons ---- */
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:14px;
+  padding:14px 24px;border:1.5px solid var(--blue);
+  background:var(--blue);color:var(--white);
+  cursor:pointer;transition:all .2s ease;
+  letter-spacing:.01em;
+}
+.btn:hover{background:var(--blue-deep);border-color:var(--blue-deep);}
+.btn-outline{background:transparent;color:var(--blue);border-style:dashed;}
+.btn-outline:hover{background:rgba(31,78,118,.06);}
+.btn-red{background:var(--red);border-color:var(--red);}
+.btn-red:hover{background:#9E2F1B;border-color:#9E2F1B;}
+
+/* ---- header ---- */
+header{
+  position:sticky;top:0;z-index:1000;
+  background:rgba(246,244,236,.94);backdrop-filter:blur(6px);
+  border-bottom:1.5px dashed var(--line);
+}
+.header-row{display:flex;align-items:center;justify-content:space-between;padding:18px 0;}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.brand-mark{
+  width:38px;height:38px;border:1.5px solid var(--blue);
+  display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:16px;
+}
+.brand-text{font-weight:700;font-size:18px;color:var(--blue-deep);border:1.5px solid var(--blue-deep);border-left:4px solid var(--red);padding:8px 16px;background:var(--paper-dim);line-height:1.3;}
+.brand-text span{color:var(--blue-deep);font-family:'IBM Plex Mono',monospace;font-size:12px;display:block;font-weight:600;letter-spacing:.03em;margin-top:2px;}
+nav ul{display:flex;gap:30px;list-style:none;}
+nav a{text-decoration:none;color:var(--blue-deep);font-weight:700;font-size:14.5px;border-bottom:1.5px solid transparent;padding-bottom:3px;transition:.2s;}
+nav a:hover{color:var(--blue);border-color:var(--red);}
+.header-actions{display:flex;align-items:center;gap:18px;}
+.phone-link{display:flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:13.5px;font-weight:600;color:var(--blue-deep);}
+.phone-link i{color:var(--red);}
+.nav-toggle{display:none;background:none;border:none;font-size:20px;color:var(--blue-deep);cursor:pointer;}
+
+/* ---- hero ---- */
+.hero{padding:80px 0 60px;}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;}
+.doc-tag{
+  display:flex;align-items:center;justify-content:center;gap:10px;width:fit-content;margin:0 auto 24px;
+  font-family:'IBM Plex Sans',sans-serif;font-size:34px;font-weight:800;letter-spacing:.01em;
+  color:var(--blue);padding:10px 20px;
+}
+.doc-tag i{color:var(--red);}
+.hero h1{font-size:44px;line-height:1.14;max-width:540px;margin-bottom:22px;}
+.hero p{font-size:17.5px;color:var(--ink-soft);max-width:470px;margin-bottom:32px;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px;}
+.hero-legend{display:flex;gap:22px;flex-wrap:wrap;}
+.legend-item{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--ink-soft);}
+.legend-item i{color:var(--blue);}
+
+.hero-art{position:relative;}
+.house-svg{width:100%;height:auto;}
+.stamp{
+  position:absolute;right:6%;bottom:6%;
+  width:150px;height:150px;border-radius:50%;
+  border:2px dashed var(--red);
+  display:flex;align-items:center;justify-content:center;
+  transform:rotate(-9deg);
+  background:rgba(246,244,236,.9);
+}
+.stamp-inner{
+  width:120px;height:120px;border-radius:50%;border:1px solid var(--red);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;color:var(--red);font-family:'IBM Plex Mono',monospace;
+}
+.stamp-inner .big{font-size:20px;font-weight:700;line-height:1.1;}
+.stamp-inner .small{font-size:9px;letter-spacing:.04em;margin-top:5px;max-width:90px;}
+
+/* ---- trust strip ---- */
+.trust{background:var(--blue-deep);border-top:1.5px dashed var(--line);border-bottom:1.5px dashed var(--line);padding:22px 0;}
+.trust-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;}
+.trust-item{display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:600;color:var(--white);}
+.trust-item i{color:#F2B79A;}
+
+/* ---- sections ---- */
+.section{padding:92px 0;}
+.section-head{max-width:620px;margin-bottom:52px;}
+.section-tag{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--red);font-weight:600;margin-bottom:12px;display:block;}
+.section-head h2{font-size:32px;margin-bottom:14px;}
+.section-head p{color:var(--ink-soft);font-size:16.5px;}
+
+/* ---- benefits (spec cards) ---- */
+.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.spec-card{
+  position:relative;border:1.5px solid var(--line);padding:30px 26px;background:var(--white);
+}
+.spec-card::before,.spec-card::after,.spec-card .tick-br,.spec-card .tick-bl{
+  content:'';position:absolute;width:10px;height:10px;border-color:var(--blue);
+}
+.spec-card::before{top:-1.5px;left:-1.5px;border-top:1.5px solid var(--blue);border-left:1.5px solid var(--blue);}
+.spec-card::after{top:-1.5px;right:-1.5px;border-top:1.5px solid var(--blue);border-right:1.5px solid var(--blue);}
+.spec-card .tick-bl{bottom:-1.5px;left:-1.5px;border-bottom:1.5px solid var(--blue);border-left:1.5px solid var(--blue);}
+.spec-card .tick-br{bottom:-1.5px;right:-1.5px;border-bottom:1.5px solid var(--blue);border-right:1.5px solid var(--blue);}
+.spec-card i{font-size:22px;color:var(--blue);margin-bottom:18px;}
+.spec-card h3{font-size:19px;margin-bottom:10px;}
+.spec-card p{font-size:14.5px;color:var(--ink-soft);}
+
+/* ---- coverage articles ---- */
+.section-blue{background:var(--blue-deep);color:var(--white);}
+.section-blue .section-head p{color:#B9C9D6;}
+.section-blue .section-tag{color:#F2B79A;}
+.section-blue h2{color:var(--white);}
+.section-blue .tenant-intro{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.16);}
+.section-blue .tenant-intro-item{background:var(--blue-deep);}
+.section-blue .tenant-intro-item h3{color:var(--white);}
+.section-blue .tenant-icon{color:#F2B79A;}
+.section-blue .tenant-intro-item p{color:#B9C9D6;}
+.section-blue .tenant-sub{color:var(--white);}
+.section-blue .tenant-check{color:var(--white);border-color:rgba(255,255,255,.2);}
+.section-blue .tenant-check i{color:#F2B79A;}
+.articles-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.16);}
+.article{background:var(--blue-deep);padding:28px 30px;}
+.article-num{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#F2B79A;margin-bottom:10px;font-weight:600;}
+.article h3{color:var(--white);font-size:18px;margin-bottom:8px;display:flex;gap:10px;align-items:center;}
+.article h3 i{color:#F2B79A;font-size:16px;}
+.article p{color:#B9C9D6;font-size:14.5px;}
+
+/* ---- annex (airbnb) ---- */
+.annex{background:var(--paper-dim);}
+.annex-head{
+  display:flex;justify-content:space-between;align-items:flex-end;gap:24px;
+  border-bottom:1.5px dashed var(--line);padding-bottom:26px;margin-bottom:40px;flex-wrap:wrap;
+}
+.annex-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+.annex-item{border-left:1.5px solid var(--line);padding:6px 28px;}
+.annex-item:first-child{border-left:none;padding-left:0;}
+.annex-item i{color:var(--red);font-size:20px;margin-bottom:14px;display:block;}
+.annex-item h3{font-size:17.5px;margin-bottom:8px;}
+.annex-item p{font-size:14.5px;color:var(--ink-soft);}
+
+/* ---- tenant section ---- */
+.tenant-intro{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-bottom:52px;}
+.tenant-intro-item{background:var(--paper);padding:30px 32px;}
+.tenant-intro-item h3{font-size:18px;margin-bottom:8px;color:var(--blue-deep);}
+.tenant-intro-item p{font-size:14.5px;color:var(--ink-soft);}
+.tenant-sub{font-size:20px;margin-bottom:24px;color:var(--blue-deep);}
+.tenant-checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 40px;}
+.tenant-check{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--ink);padding:10px 0;border-bottom:1px dashed var(--line);}
+.tenant-check i{color:var(--red);font-size:14px;flex-shrink:0;}
+.tenant-icon{color:var(--blue);margin-right:8px;}
+
+/* ---- steps ---- */
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;counter-reset:step;}
+.step{padding:0 28px 0 0;position:relative;}
+.step:not(:last-child){border-right:1.5px dashed var(--line);}
+.step-num{
+  font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--red);font-weight:700;
+  margin-bottom:16px;display:block;
+}
+.step h3{font-size:19px;margin-bottom:8px;}
+.step p{font-size:14.5px;color:var(--ink-soft);}
+
+/* ---- faq ---- */
+.faq-list{max-width:760px;}
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-q{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:22px 2px;cursor:pointer;font-weight:600;font-size:16px;color:var(--blue-deep);
+}
+.faq-q .mono{color:var(--red);font-size:14px;flex:none;}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;color:var(--ink-soft);font-size:15px;}
+.faq-item.active .faq-a{max-height:280px;}
+.faq-a-inner{padding:0 2px 22px;}
+
+/* ---- contact (application form) ---- */
+.contact{background:var(--paper-dim);}
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:0;border:1.5px solid var(--line);background:var(--white);}
+.contact-info{background:var(--blue-deep);color:var(--white);padding:50px 42px;}
+.contact-info h3{color:var(--white);font-size:24px;margin-bottom:16px;}
+.contact-info p{color:#B9C9D6;font-size:14.5px;margin-bottom:32px;}
+.c-item{display:flex;gap:13px;margin-bottom:20px;align-items:flex-start;}
+.c-item i{color:#F2B79A;font-size:15px;margin-top:3px;}
+.c-item div{font-size:14px;color:#D9E1E7;font-family:'IBM Plex Mono',monospace;}
+.form-wrap{padding:50px 42px;}
+.form-wrap h3{font-size:21px;margin-bottom:8px;}
+.form-wrap .form-sub{font-size:13.5px;color:var(--ink-soft);margin-bottom:26px;}
+.form-row{margin-bottom:22px;}
+.form-row label{display:block;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:var(--blue);margin-bottom:8px;letter-spacing:.02em;}
+.form-row input,.form-row select,.form-row textarea{
+  width:100%;border:none;border-bottom:1.5px solid var(--line);
+  background:transparent;padding:8px 2px;font-family:'IBM Plex Sans',sans-serif;font-size:15px;color:var(--ink);
+}
+.form-row input:focus,.form-row select:focus,.form-row textarea:focus{outline:none;border-color:var(--blue);}
+.form-row textarea{resize:vertical;min-height:70px;}
+.form-msg{display:none;padding:12px 14px;margin-bottom:18px;font-size:13.5px;}
+.form-msg.success{display:block;background:#E5EEE2;color:#3C6B2E;border:1px solid #3C6B2E;}
+.form-msg.error{display:block;background:#F5E1DC;color:var(--red);border:1px solid var(--red);}
+
+/* ---- footer ---- */
+footer{background:var(--paper);border-top:1.5px dashed var(--line);padding:56px 0 26px;}
+.footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:36px;padding-bottom:36px;}
+.footer-grid h4{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--blue);margin-bottom:16px;font-weight:600;}
+.footer-grid ul{list-style:none;}
+.footer-grid li{margin-bottom:9px;font-size:14px;color:var(--ink-soft);}
+.footer-grid a{text-decoration:none;color:var(--ink-soft);}
+.footer-grid a:hover{color:var(--red);}
+.footer-brand p{font-size:14px;color:var(--ink-soft);margin-top:12px;max-width:280px;}
+.footer-bottom{
+  border-top:1px solid var(--line-soft);padding-top:20px;
+  font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink-soft);text-align:center;
+}
+
+@media(max-width:960px){
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-art{order:-1;}
+  .benefits-grid{grid-template-columns:1fr;}
+  .articles-grid{grid-template-columns:1fr;}
+  .annex-grid{grid-template-columns:1fr;gap:24px;}
+  .annex-item{border-left:none;padding-left:0;}
+  .tenant-intro{grid-template-columns:1fr;}
+  .tenant-checklist{grid-template-columns:1fr;}
+  .steps-grid{grid-template-columns:1fr;gap:30px;}
+  .step:not(:last-child){border-right:none;border-bottom:1.5px dashed var(--line);padding-bottom:26px;}
+  .contact-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:720px){
+  nav{display:none;}
+  .nav-toggle{display:block;}
+  .phone-link span{display:none;}
+  .hero h1{font-size:32px;}
+  .section{padding:64px 0;}
+  .footer-grid{grid-template-columns:1fr;}
+  .annex-head{display:block;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-row">
+    <a href="#" class="brand">
+      <div class="brand-text">ΑΣΦΑΛΕΙΕΣ ΑΘΗΤΑΚΗΣ<span>Ελύρου 7 Χανιά</span></div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#why">Γιατί εμάς</a></li>
+        <li><a href="#coverage">Καλύψεις</a></li>
+        <li><a href="#airbnb">Airbnb</a></li>
+        <li><a href="#tenant">Ενοικιαστή</a></li>
+        <li><a href="#faq">Ερωτήσεις</a></li>
+        <li><a href="#contact">Επικοινωνία</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="tel:2821091830" class="phone-link"><i class="fas fa-phone"></i><span>2821 091 830</span></a>
+      <a href="#contact" class="btn">Αίτημα προσφοράς</a>
+    </div>
+    <button class="nav-toggle" aria-label="Μενού"><i class="fas fa-bars"></i></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero grid-bg">
+  <div class="container hero-grid" style="position:relative;z-index:1;">
+    <div>
+      <span class="doc-tag"><i class="fas fa-file-signature"></i>ΑΣΦΑΛΙΣΗ ΚΑΤΟΙΚΙΑΣ</span>
+      <h1>Το ασφαλιστήριο του σπιτιού σας, χωρίς τα ψιλά γράμματα</h1>
+      <p>Χτίζουμε την κάλυψή σας άρθρο-άρθρο, μαζί σας — ώστε να ξέρετε ακριβώς τι πληρώνετε και τι καλύπτεστε.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-red">Ζητήστε προσφορά</a>
+        <a href="#coverage" class="btn btn-outline">Δείτε τα άρθρα κάλυψης</a>
+      </div>
+      <div class="hero-legend">
+        <div class="legend-item"><i class="fas fa-check"></i>Χωρίς αυτοψία έως 200.000€</div>
+        <div class="legend-item"><i class="fas fa-check"></i>Απάντηση εντός 24 ωρών</div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg class="house-svg" viewBox="0 0 480 400" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="70,220 240,90 410,220" fill="none" stroke="#1F4E76" stroke-width="2.5"/>
+        <rect x="105" y="220" width="270" height="150" fill="none" stroke="#1F4E76" stroke-width="2.5"/>
+        <rect x="150" y="270" width="55" height="100" fill="none" stroke="#1F4E76" stroke-width="2"/>
+        <rect x="255" y="255" width="50" height="45" fill="none" stroke="#1F4E76" stroke-width="1.5"/>
+        <rect x="320" y="255" width="50" height="45" fill="none" stroke="#1F4E76" stroke-width="1.5"/>
+        <line x1="255" y1="277" x2="305" y2="277" stroke="#1F4E76" stroke-width="1"/>
+        <line x1="280" y1="255" x2="280" y2="300" stroke="#1F4E76" stroke-width="1"/>
+        <line x1="320" y1="277" x2="370" y2="277" stroke="#1F4E76" stroke-width="1"/>
+        <line x1="345" y1="255" x2="345" y2="300" stroke="#1F4E76" stroke-width="1"/>
+        <line x1="240" y1="90" x2="240" y2="60" stroke="#C23B22" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <circle cx="240" cy="55" r="4" fill="#C23B22"/>
+        <line x1="70" y1="220" x2="70" y2="380" stroke="#B9C6D1" stroke-width="1" stroke-dasharray="3 3"/>
+        <line x1="410" y1="220" x2="410" y2="380" stroke="#B9C6D1" stroke-width="1" stroke-dasharray="3 3"/>
+        <line x1="60" y1="370" x2="420" y2="370" stroke="#5B6870" stroke-width="1"/>
+        <text x="240" y="392" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="#5B6870">ΟΨΗ ΚΑΤΟΙΚΙΑΣ — Δ.1</text>
+        <line x1="105" y1="220" x2="375" y2="220" stroke="#B9C6D1" stroke-width="1" stroke-dasharray="3 3"/>
+      </svg>
+      <div class="stamp">
+        <div class="stamp-inner">
+          <div class="big">24/7</div>
+          <div class="small">ΥΠΟΣΤΗΡΙΞΗ ΣΕ ΖΗΜΙΕΣ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="container trust-row">
+    <div class="trust-item"><i class="fas fa-file-invoice"></i>Δωρεάν μελέτη ασφάλισης</div>
+    <div class="trust-item"><i class="fas fa-sliders-h"></i>Προσαρμοσμένες καλύψεις</div>
+    <div class="trust-item"><i class="fas fa-clock"></i>Έκδοση προσφοράς εντός 24 ωρών</div>
+  </div>
+</div>
+
+<!-- BENEFITS -->
+<section class="section" id="why">
+  <div class="container">
+    <div class="section-head">
+      <h2>Τρία πράγματα που μας ξεχωρίζουν</h2>
+      <p>Δεν πουλάμε ασφάλιστρο — εξηγούμε τι καλύπτεστε, πριν υπογράψετε οτιδήποτε.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="spec-card"><span class="tick-bl"></span><span class="tick-br"></span>
+        <i class="fas fa-shield-alt"></i>
+        <h3>Ξεκάθαρη κάλυψη</h3>
+        <p>Κάθε κατηγορία κινδύνου αναφέρεται ρητά στο ασφαλιστήριο — όχι σε παράρτημα με ψιλά γράμματα.</p>
+      </div>
+      <div class="spec-card"><span class="tick-bl"></span><span class="tick-br"></span>
+        <i class="fas fa-balance-scale"></i>
+        <h3>Δίκαιη αποζημίωση</h3>
+        <p>Υπολογίζουμε βάσει πραγματικού κόστους επισκευής ή αντικατάστασης, όχι κατ' εκτίμηση.</p>
+      </div>
+      <div class="spec-card"><span class="tick-bl"></span><span class="tick-br"></span>
+        <i class="fas fa-user-tie"></i>
+        <h3>Έναν άνθρωπο στο τηλέφωνο</h3>
+        <p>Σε περίπτωση ζημιάς μιλάτε με το τοπικό μας γραφείο, όχι με σύστημα εξυπηρέτησης.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COVERAGE ARTICLES -->
+<section class="section section-blue" id="coverage">
+  <div class="container">
+    <div class="section-head">
+      <h2>Οι βασικές κατηγορίες καλύψεων</h2>
+    </div>
+    <div class="articles-grid">
+      <div class="article"><h3><i class="fas fa-fire"></i>Πυρκαγιά & έκρηξη</h3><p>Ζημιές από φωτιά, έκρηξη και καπνό, μαζί με τα έξοδα αποκατάστασης.</p></div>
+      <div class="article"><h3><i class="fas fa-tint"></i>Υδραυλικά προβλήματα</h3><p>Διαρροές, σπασμένοι σωλήνες και ζημιές από υπερχείλιση νερού.</p></div>
+      <div class="article"><h3><i class="fas fa-wind"></i>Φυσικές καταστροφές</h3><p>Σεισμός, καταιγίδα, χαλάζι και πλημμύρα.</p></div>
+      <div class="article"><h3><i class="fas fa-gem"></i>Κλοπή & βανδαλισμός</h3><p>Αποζημίωση για κλοπή, απόπειρα διάρρηξης και βανδαλισμό.</p></div>
+      <div class="article"><h3><i class="fas fa-exclamation-triangle"></i>Κακόβουλες ενέργειες</h3><p>Ζημιές από κακόβουλες ενέργειες τρίτων και τρομοκρατικές ενέργειες.</p></div>
+      <div class="article"><h3><i class="fas fa-tools"></i>Έξοδα αποκατάστασης</h3><p>Αμοιβές μηχανικού και αποκομιδή συντριμμάτων μετά από ζημιά.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- AIRBNB -->
+<section class="section annex" id="airbnb">
+  <div class="container">
+    <div class="annex-head">
+      <div>
+        <h2>Βραχυχρόνια μίσθωση - Airbnb</h2>
+        <p style="max-width:340px;color:var(--ink-soft);font-size:15px;font-weight:700;">Ασφαλιστικές καλύψεις ειδικά προσαρμοσμένες για τις ανάγκες κατοικιών βραχυχρόνιας μίσθωσης (Airbnb).</p>
+      </div>
+    </div>
+    <div class="annex-grid">
+      <div class="annex-item"><i class="fas fa-building"></i><h3>Για ιδιοκτήτες</h3><p>Προστασία κτιρίου, απώλεια ενοικίου σε περίπτωση ζημιάς και αστική ευθύνη.</p></div>
+      <div class="annex-item"><i class="fas fa-couch"></i><h3>Για διαχειριστές</h3><p>Κάλυψη περιεχομένου, βελτιώσεων και εξοπλισμού του ακινήτου.</p></div>
+      <div class="annex-item"><i class="fas fa-user-shield"></i><h3>Ευθύνη έναντι επισκεπτών</h3><p>Κάλυψη τραυματισμού ή ζημιάς σε επισκέπτες κατά τη διαμονή τους.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TENANT -->
+<section class="section section-blue" id="tenant">
+  <div class="container">
+    <div class="section-head">
+      <h2>Τι είναι η ασφάλεια ενοικιαστή;</h2>
+      <p>Είναι μια προσωπική ασφάλεια κατοικίας σχεδιασμένη ειδικά για όσους νοικιάζουν το σπίτι τους. Καλύπτει δύο βασικούς κινδύνους:</p>
+    </div>
+    <div class="tenant-intro">
+      <div class="tenant-intro-item">
+        <h3><i class="fas fa-couch tenant-icon"></i>Τα αντικείμενά σου</h3>
+        <p>Έπιπλα, ηλεκτρονικά, ρουχισμός, κοσμήματα, αντικείμενα αξίας — όλα όσα έχεις μέσα στο σπίτι.</p>
+      </div>
+      <div class="tenant-intro-item">
+        <h3><i class="fas fa-balance-scale tenant-icon"></i>Την ευθύνη σου απέναντι σε άλλους</h3>
+        <p>Αν τυχαία προκαλέσεις ζημιά στον γείτονα ή σε τρίτο, η ασφάλεια πληρώνει αντί για σένα.</p>
+      </div>
+    </div>
+    <h3 class="tenant-sub">Τι καλύπτει συγκεκριμένα;</h3>
+    <div class="tenant-checklist">
+      <div class="tenant-check"><i class="fas fa-check"></i>Κλοπή & διάρρηξη</div>
+      <div class="tenant-check"><i class="fas fa-check"></i>Αστική ευθύνη προς τρίτους</div>
+      <div class="tenant-check"><i class="fas fa-check"></i>Ζημιές από φωτιά & καπνό</div>
+      <div class="tenant-check"><i class="fas fa-check"></i>Νομική προστασία</div>
+      <div class="tenant-check"><i class="fas fa-check"></i>Ζημιές από νερό & διαρροή</div>
+      <div class="tenant-check"><i class="fas fa-check"></i>Προσωρινή διαμονή σε ζημιά</div>
+      <div class="tenant-check"><i class="fas fa-check"></i>Θραύση κρυστάλλων</div>
+      <div class="tenant-check"><i class="fas fa-check"></i>Ηλεκτρονικά & φορητές συσκευές</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq" style="background:var(--paper-dim);">
+  <div class="container">
+    <div class="section-head">
+      <h2>Πριν ρωτήσετε εμάς</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item active">
+        <div class="faq-q"><span>Τι καλύπτει ακριβώς η ασφάλιση κατοικίας;</span><span class="mono">＋</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Καλύπτει ζημιές από πυρκαγιά, πλημμύρα, σεισμό, κλοπή, βραχυκύκλωμα και φυσικές καταστροφές, νομική προστασία και ένα πλήθος καλύψεων — ανάλογα με το πακέτο που θα επιλέξετε.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Χρειάζεται αυτοψία στο σπίτι;</span><span class="mono">＋</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Όχι απαραίτητα. Για αξίες κάτω από 200.000€ η ασφάλιση εκδίδεται χωρίς αυτοψία, με βάση τη δήλωσή σας. Για μεγαλύτερες αξίες προσφέρουμε δωρεάν εκτίμηση από συνεργάτη μας.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Μπορώ να αλλάξω τις καλύψεις του ασφαλιστηρίου μου;</span><span class="mono">＋</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Ναι, μπορείτε να προσαρμόσετε την κάλυψη ανά πάσα στιγμή. Οι αλλαγές ισχύουν από την επόμενη ημέρα και αποτυπώνονται στο επόμενο τιμολόγιο.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Μπορώ να ασφαλίσω ενοικιαζόμενο σπίτι (Airbnb);</span><span class="mono">＋</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Ναι. Καλύπτουμε τόσο τον ιδιοκτήτη όσο και τον διαχειριστή/ενοικιαστή, με ειδικές λύσεις για τη βραχυχρόνια μίσθωση — δείτε το Παράρτημα Α παραπάνω.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<!-- CONTACT -->
+<section class="section contact" id="contact">
+  <div class="container">
+    <div style="background:var(--blue-deep);padding:44px 40px;margin-bottom:52px;border-radius:4px;">
+      <div class="section-head" style="margin-bottom:20px;">
+        <h2 style="color:var(--white);">Από το αίτημα στην κάλυψη</h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step" style="color:var(--white);border-right:1.5px dashed rgba(255,255,255,.25);"><h3 style="color:var(--white);">Στέλνετε τα στοιχεία</h3><p style="color:#B9C9D6;">Συμπληρώνετε τη φόρμα με τα βασικά χαρακτηριστικά του ακινήτου.</p></div>
+        <div class="step" style="color:var(--white);border-right:1.5px dashed rgba(255,255,255,.25);"><h3 style="color:var(--white);">Λαμβάνετε πρόταση</h3><p style="color:#B9C9D6;">Σας καλούμε για να διαμορφώσουμε μαζί την κατάλληλη κάλυψη.</p></div>
+        <div class="step" style="color:var(--white);"><h3 style="color:var(--white);">Υπογράφετε με σιγουριά</h3><p style="color:#B9C9D6;">Προχωράτε γνωρίζοντας ακριβώς τι καλύπτει το συμβόλαιό σας.</p></div>
+      </div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Αίτημα προσφοράς</h3>
+        <p>Συμπληρώστε τη φόρμα και το γραφείο μας θα επικοινωνήσει μαζί σας εντός 24 ωρών.</p>
+        <div class="c-item"><i class="fas fa-phone"></i><div>2821 091 830<br>2821 091 552</div></div>
+        <div class="c-item"><i class="fas fa-envelope"></i><div>gathit@otenet.gr</div></div>
+        <div class="c-item"><i class="fas fa-map-marker-alt"></i><div>Οδός Ελύρου 7, Χανιά</div></div>
+      </div>
+      <div class="form-wrap">
+        <h3>Στοιχεία ακινήτου</h3>
+        <p class="form-sub">Πεδία με * είναι υποχρεωτικά.</p>
+        <form id="contactForm" action="https://formspree.io/f/xanaybzo" method="POST">
+          <div id="formMessage" class="form-msg"></div>
+          <div class="form-row"><label for="name">ΟΝΟΜΑΤΕΠΩΝΥΜΟ *</label><input type="text" id="name" name="name" required></div>
+          <div class="form-row"><label for="email">EMAIL *</label><input type="email" id="email" name="email" required></div>
+          <div class="form-row"><label for="phone">ΤΗΛΕΦΩΝΟ *</label><input type="tel" id="phone" name="phone" required></div>
+          <div class="form-row">
+            <label for="property">ΤΥΠΟΣ ΑΚΙΝΗΤΟΥ</label>
+            <select id="property" name="property">
+              <option value="">Επιλέξτε…</option>
+              <option value="apartment">Διαμέρισμα</option>
+              <option value="house">Μονοκατοικία</option>
+              <option value="villa">Βίλα</option>
+              <option value="airbnb">Airbnb / Ενοικιαζόμενο</option>
+              <option value="business">Επαγγελματικός χώρος</option>
+            </select>
+          </div>
+          <div class="form-row"><label for="message">ΠΛΗΡΟΦΟΡΙΕΣ & ΕΡΩΤΗΣΕΙΣ</label><textarea id="message" name="message" placeholder="Περιγράψτε το ακίνητο και τις ανάγκες σας…"></textarea></div>
+          <button type="submit" class="btn btn-red" style="width:100%;justify-content:center;">Αποστολή αιτήματος</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-text" style="color:var(--blue-deep);">Ασφάλιση Κατοικίας<span>ΧΑΝΙΑ · ΑΣΦΑΛΙΣΤΙΚΕΣ ΥΠΗΡΕΣΙΕΣ</span></div>
+        <p>Τοπική ασφαλιστική εξυπηρέτηση στα Χανιά, για ιδιοκτήτες που θέλουν ξεκάθαρη κάλυψη.</p>
+      </div>
+      <div><h4>ΣΕΛΙΔΑ</h4><ul>
+        <li><a href="#why">Γιατί εμάς</a></li>
+        <li><a href="#coverage">Καλύψεις</a></li>
+        <li><a href="#airbnb">Airbnb</a></li>
+        <li><a href="#tenant">Ενοικιαστή</a></li>
+        <li><a href="#faq">Ερωτήσεις</a></li>
+        <li><a href="#contact">Επικοινωνία</a></li>
+      </ul></div>
+      <div><h4>ΥΠΗΡΕΣΙΕΣ</h4><ul>
+        <li><a href="#">Ασφάλιση κατοικίας</a></li>
+        <li><a href="#">Ασφάλιση Airbnb</a></li>
+        <li><a href="#">Ασφάλιση περιουσίας</a></li>
+        <li><a href="#">Ασφάλιση ενοικιαστή</a></li>
+      </ul></div>
+      <div><h4>ΕΠΙΚΟΙΝΩΝΙΑ</h4><ul>
+        <li><i class="fas fa-phone"></i> 2821 091 830</li>
+        <li><i class="fas fa-envelope"></i> gathit@otenet.gr</li>
+        <li><i class="fas fa-map-marker-alt"></i> Οδός Ελύρου 7, Χανιά</li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">© 2026 ΑΣΦΑΛΙΣΗ ΚΑΤΟΙΚΙΑΣ — ΧΑΝΙΑ. ΟΙ ΤΕΛΙΚΟΙ ΟΡΟΙ ΚΑΛΥΨΗΣ ΚΑΘΟΡΙΖΟΝΤΑΙ ΑΠΟ ΤΟ ΑΣΦΑΛΙΣΤΗΡΙΟ ΣΥΜΒΟΛΑΙΟ.</div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click', ()=>{
+    const item=q.parentElement;
+    const wasActive=item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('active'));
+    if(!wasActive) item.classList.add('active');
+  });
+});
+
+const form=document.getElementById('contactForm');
+const formMessage=document.getElementById('formMessage');
+form.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const name=document.getElementById('name').value;
+  const email=document.getElementById('email').value;
+  const phone=document.getElementById('phone').value;
+  if(!name||!email||!phone){
+    showMessage('Παρακαλώ συμπληρώστε τα υποχρεωτικά πεδία (ονοματεπώνυμο, email και τηλέφωνο).','error');
+    return;
+  }
+  const submitBtn=form.querySelector('button[type="submit"]');
+  const originalText=submitBtn.textContent;
+  submitBtn.textContent='Αποστολή…';
+  submitBtn.disabled=true;
+  try{
+    const formData=new FormData(form);
+    const response=await fetch(form.action,{method:'POST',body:formData,headers:{'Accept':'application/json'}});
+    if(response.ok){
+      showMessage('Το αίτημά σας εστάλη με επιτυχία! Θα επικοινωνήσουμε μαζί σας σύντομα.','success');
+      form.reset();
+    } else { throw new Error('Network response was not ok.'); }
+  } catch(err){
+    showMessage('Προέκυψε σφάλμα κατά την αποστολή. Δοκιμάστε ξανά ή καλέστε μας.','error');
+  } finally {
+    submitBtn.textContent=originalText;
+    submitBtn.disabled=false;
+  }
+});
+function showMessage(msg,type){
+  formMessage.textContent=msg;
+  formMessage.className='form-msg '+type;
+  formMessage.scrollIntoView({behavior:'smooth',block:'center'});
+  if(type==='success'){ setTimeout(()=>{ formMessage.style.display='none'; },5000); }
+}
+document.querySelector('.nav-toggle').addEventListener('click', ()=>{
+  const nav=document.querySelector('nav');
+  nav.style.display = nav.style.display==='block' ? 'none' : 'block';
+});
+</script>
+</body>
+</html>
