@@ -499,12 +499,12 @@ footer{background:var(--paper);border-top:1.5px dashed var(--line);padding:56px 
       </div>
       <div class="form-wrap">
         <h3>Στοιχεία ακινήτου</h3>
-        <p class="form-sub">Πεδία με * είναι υποχρεωτικά.</p>
-        <form id="contactForm" action="https://formspree.io/f/xanaybzo" method="POST">
+
+        <form id="contactForm" action="https://formspree.io/f/xgaveroe" method="POST">
           <div id="formMessage" class="form-msg"></div>
-          <div class="form-row"><label for="name">ΟΝΟΜΑΤΕΠΩΝΥΜΟ *</label><input type="text" id="name" name="name" required></div>
-          <div class="form-row"><label for="email">EMAIL *</label><input type="email" id="email" name="email" required></div>
-          <div class="form-row"><label for="phone">ΤΗΛΕΦΩΝΟ *</label><input type="tel" id="phone" name="phone" required></div>
+          <div class="form-row"><label for="name">ΟΝΟΜΑΤΕΠΩΝΥΜΟ</label><input type="text" id="name" name="name"></div>
+          <div class="form-row"><label for="email">EMAIL</label><input type="email" id="email" name="email"></div>
+          <div class="form-row"><label for="phone">ΤΗΛΕΦΩΝΟ</label><input type="tel" id="phone" name="phone"></div>
           <div class="form-row">
             <label for="property">ΤΥΠΟΣ ΑΚΙΝΗΤΟΥ</label>
             <select id="property" name="property">
@@ -569,13 +569,6 @@ const form=document.getElementById('contactForm');
 const formMessage=document.getElementById('formMessage');
 form.addEventListener('submit', async (e)=>{
   e.preventDefault();
-  const name=document.getElementById('name').value;
-  const email=document.getElementById('email').value;
-  const phone=document.getElementById('phone').value;
-  if(!name||!email||!phone){
-    showMessage('Παρακαλώ συμπληρώστε τα υποχρεωτικά πεδία (ονοματεπώνυμο, email και τηλέφωνο).','error');
-    return;
-  }
   const submitBtn=form.querySelector('button[type="submit"]');
   const originalText=submitBtn.textContent;
   submitBtn.textContent='Αποστολή…';
